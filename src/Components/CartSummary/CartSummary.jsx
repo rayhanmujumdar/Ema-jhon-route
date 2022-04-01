@@ -2,7 +2,7 @@ import { ArrowCircleRightIcon, TrashIcon } from '@heroicons/react/solid';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CartSummary = ({ carts, Clear }) => {
+const CartSummary = ({ carts, Clear,className }) => {
     const [totalPrice,setTotalPrice] = useState(0);
     const [shippinCharge,setShippingCharge] = useState(0)
     const navigate = useNavigate()
@@ -25,7 +25,7 @@ const CartSummary = ({ carts, Clear }) => {
         navigate(path)
     }
     return (
-        <div>
+        <div className={className}>
             <h1 className='text-4xl my-10'>Order summary</h1>
             <div className='text-left p-4 text-lg min-h-[25vh]'>
                 <p>Selected Items: {carts.length}</p>

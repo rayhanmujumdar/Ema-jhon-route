@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { addToDb } from '../../fakeDb/AddToDb';
-import { UseCart } from '../../hooks/UseCart';
+import { addToDb } from '../../fakeDb/fakeDb';
+import { useCart } from '../../hooks/useCart';
 import useProducts from '../../hooks/UseProducts';
 import CartSummary from '../CartSummary/CartSummary';
 import Product from '../Product/Product';
@@ -11,9 +11,11 @@ const Shop = () => {
         const newProduct = [...carts,product]
         setCart(newProduct)
         addToDb(product.key)
+        
     }
     const Clear = () => {
         setCart([])
+        useCart()
     }
     return (
         <div className='grid md:grid-cols-4 grid-cols-1 bg-slate-100'>

@@ -1,21 +1,31 @@
-import { useState } from 'react';
-import { addToDb } from '../../fakeDb/fakeDb';
+import { useEffect, useState } from 'react';
+import { addToDb, clear } from '../../fakeDb/fakeDb';
 import { useCart } from '../../hooks/useCart';
 import useProducts from '../../hooks/UseProducts';
 import CartSummary from '../CartSummary/CartSummary';
 import Product from '../Product/Product';
 const Shop = () => {
     const [products,setProduct] = useProducts()
-    const [carts,setCart] = useState([])
-    const addToCart = (product) => {
-        const newProduct = [...carts,product]
-        setCart(newProduct)
-        addToDb(product.key)
-        
+    const [carts,setCart] = useCart(products)
+
+    const addToCart = (selectedProduct) => {
+        let newCart = [];
+        const exists = carts.find(product => product.key === selectedProduct.key);
+        if(!exists){
+            selectedProduct.quantity = 1;
+            newCart = [...carts,selectedProduct]
+        }
+        else{
+            const rest = carts.filter(product => product.key !== selectedProduct.key);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest,exists];
+        }
+        addToDb(selectedProduct.key) 
+        setCart(newCart)
     }
     const Clear = () => {
         setCart([])
-        useCart()
+        clear()
     }
     return (
         <div className='grid md:grid-cols-4 grid-cols-1 bg-slate-100'>

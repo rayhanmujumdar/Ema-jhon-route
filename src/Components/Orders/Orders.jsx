@@ -1,5 +1,7 @@
+import { ArrowCircleRightIcon } from '@heroicons/react/solid';
 import React from 'react';
-import { removeToDb } from '../../fakeDb/fakeDb';
+import { useNavigate } from 'react-router-dom';
+import { clear, removeToDb } from '../../fakeDb/fakeDb';
 import { useCart } from '../../hooks/useCart';
 import useProducts from '../../hooks/UseProducts';
 import CartSummary from '../CartSummary/CartSummary';
@@ -13,6 +15,15 @@ const Orders = () => {
         setCart(rest)
         removeToDb(product.key)
     }
+    const navigate = useNavigate()
+    const reviowOrder = () => {
+        const path = '/orders'
+        navigate(path)
+    }
+    const Clear = () => {
+        setCart([])
+        clear()
+    }
     return (
         <div className='flex md:flex-row flex-col justify-around items-start my-10'>
             <div className='bg-slate-200 p-10 rounded-xl m-4 md:order-1 order-2'>
@@ -25,7 +36,9 @@ const Orders = () => {
                 }
             </div>
             <div className='md:sticky top-[92px] md:m-0 m-auto order-1 md:order-2'>
-                <CartSummary carts={carts} className='bg-slate-700 text-white p-4 rounded-md'></CartSummary>
+                <CartSummary carts={carts} Clear={Clear} className='bg-slate-700 text-white p-4 rounded-md'>
+                    <button onClick={reviowOrder} className='flex justify-center w-full bg-yellow-600 py-3 shadow-lg rounded-lg my-4 hover:bg-yellow-400'>Proceed Checkout <ArrowCircleRightIcon className='w-6 ml-3'></ArrowCircleRightIcon></button>
+                </CartSummary>
             </div>
         </div>
     );

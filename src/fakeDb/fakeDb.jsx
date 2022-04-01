@@ -33,4 +33,7 @@ const removeToDb = (id) => {
         localStorage.setItem('shopping-cart',JSON.stringify(shoppingCart))
     }
 }
-export { addToDb, getCartDb,removeToDb} 
+const clear = () => {
+    localStorage.removeItem('shopping-cart')
+}
+export { addToDb, getCartDb,removeToDb,clear} 

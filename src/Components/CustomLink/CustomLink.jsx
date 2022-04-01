@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
-const CustomLink = ({ children, to, ...props }) => {
+const CustomLink = ({allOk, children, to, ...props }) => {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
-  
     return (
-      <div>
+      <div onClick={() => allOk(match)}>
         <Link
           style={{ color: match ? '#EA580C' : "white"}}
           to={to}

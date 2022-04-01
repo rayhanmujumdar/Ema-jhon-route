@@ -25,7 +25,7 @@ const Orders = () => {
         clear()
     }
     return (
-        <div className='flex md:flex-row flex-col justify-around items-start my-10'>
+        <div className='flex md:flex-row flex-col justify-around md:items-start items-center my-10'>
             <div className='bg-slate-200 p-10 rounded-xl m-4 md:order-1 order-2'>
                 {
                     carts.map(cart => <ReviewOrder

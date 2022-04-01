@@ -27,7 +27,6 @@ const CartSummary = (props) => {
     },[carts])
     const tax = Math.round(totalPrice * 0.1)
     const grandPrice = totalPrice + shippinCharge + tax;
-    console.log(carts.quantity)
     const navigate = useNavigate()
     const reviowOrder = () => {
         const path = '/orders'

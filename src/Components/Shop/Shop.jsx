@@ -5,7 +5,7 @@ import useProducts from '../../hooks/UseProducts';
 import CartSummary from '../CartSummary/CartSummary';
 import Product from '../Product/Product';
 const Shop = () => {
-    const [products,setProduct] = useProducts()
+    const [ products,setProduct ] = useProducts()
     const [carts,setCart] = useCart(products)
 
     const addToCart = (selectedProduct) => {

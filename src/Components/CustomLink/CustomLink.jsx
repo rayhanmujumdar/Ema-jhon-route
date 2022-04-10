@@ -5,7 +5,7 @@ const CustomLink = ({allOk, children, to, ...props }) => {
     let resolved = useResolvedPath(to);
     let match = useMatch({ path: resolved.pathname, end: true });
     return (
-      <div onClick={() => allOk(match)}>
+      <div>
         <Link
           style={{ color: match ? '#EA580C' : "white"}}
           to={to}

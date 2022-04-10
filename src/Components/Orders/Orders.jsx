@@ -17,7 +17,7 @@ const Orders = () => {
     }
     const navigate = useNavigate()
     const reviowOrder = () => {
-        const path = '/orders'
+        const path = '/inventory'
         navigate(path)
     }
     const Clear = () => {
